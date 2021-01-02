@@ -54,4 +54,16 @@ var Errors = map[uint64]*Error{
 		Message:     "room with this id doesn't exist",
 		UserMessage: "Комнаты с таким ID не существует",
 	},
+	CodeBookingDoesNotExist: {
+		Code:        CodeBookingDoesNotExist,
+		HTTPCode:    http.StatusNotFound,
+		Message:     "booking with this id doesn't exist",
+		UserMessage: "Брони с таким ID не существует",
+	},
+	CodeIncorrectDates: {
+		Code:        CodeIncorrectDates,
+		HTTPCode:    http.StatusBadRequest,
+		Message:     "dates are incorrect",
+		UserMessage: "Дата начала бронирования не может быть раньше даты окончания",
+	},
 }
