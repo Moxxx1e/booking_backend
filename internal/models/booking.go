@@ -16,7 +16,7 @@ func (ct *CustomDate) UnmarshalParam(param string) error {
 }
 
 type Booking struct {
-	ID        uint64 `json:"id"`
+	ID        uint64 `json:"booking_id"`
 	DateStart string `json:"date_start"`
 	DateEnd   string `json:"date_end"`
 	Room      uint64 `json:"room"`

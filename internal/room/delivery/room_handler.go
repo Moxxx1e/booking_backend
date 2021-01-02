@@ -28,6 +28,10 @@ func (rh *RoomHandler) Configure(e *echo.Echo) {
 	e.DELETE("rooms/:id", rh.DeleteRoom())
 }
 
+type RoomID struct {
+	ID uint64 `json:"room_id"`
+}
+
 func (rh *RoomHandler) CreateRoom() echo.HandlerFunc {
 	type Request struct {
 		// TODO: ограничить длину description
@@ -54,11 +58,7 @@ func (rh *RoomHandler) CreateRoom() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, response.Response{
-			Body: &response.Body{
-				"id": room.ID,
-			},
-		})
+		return context.JSON(http.StatusOK, RoomID{ID: room.ID})
 	}
 }
 
@@ -84,11 +84,7 @@ func (rh *RoomHandler) GetRooms() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, response.Response{
-			Body: &response.Body{
-				"rooms": rooms,
-			},
-		})
+		return context.JSON(http.StatusOK, rooms)
 	}
 }
 
@@ -108,7 +104,7 @@ func (rh *RoomHandler) DeleteRoom() echo.HandlerFunc {
 		}
 
 		return context.JSON(http.StatusOK, response.Response{
-			Message: "successfully deleted",
+			Message: "success",
 		})
 	}
 }

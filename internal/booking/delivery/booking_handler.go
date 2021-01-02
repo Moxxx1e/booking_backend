@@ -27,6 +27,10 @@ func (bh *BookingHandler) Configure(e *echo.Echo) {
 	e.DELETE("bookings/:id", bh.DeleteBooking())
 }
 
+type BookingID struct {
+	ID uint64 `json:"booking_id"`
+}
+
 func (bh *BookingHandler) CreateBooking() echo.HandlerFunc {
 	type Request struct {
 		RoomID    uint64            `form:"room_id" validate:"required"`
@@ -52,11 +56,7 @@ func (bh *BookingHandler) CreateBooking() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, response.Response{
-			Body: &response.Body{
-				"id": booking.ID,
-			},
-		})
+		return context.JSON(http.StatusOK, BookingID{ID: booking.ID})
 	}
 }
 
@@ -79,11 +79,7 @@ func (bh *BookingHandler) GetRoomBookings() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, response.Response{
-			Body: &response.Body{
-				"bookings": bookings,
-			},
-		})
+		return context.JSON(http.StatusOK, bookings)
 	}
 }
 
@@ -102,8 +98,6 @@ func (bh *BookingHandler) DeleteBooking() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, response.Response{
-			Message: "successfully deleted",
-		})
+		return context.JSON(http.StatusOK, response.Response{Message: "success"})
 	}
 }
