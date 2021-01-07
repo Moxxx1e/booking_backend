@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS bookings, rooms;
-
 CREATE TABLE IF NOT EXISTS rooms
 (
     id          SERIAL PRIMARY KEY,

@@ -14,11 +14,14 @@ import (
 	"log"
 )
 
-const serverAddr = "localhost:9000"
+const serverAddr = ":9000"
 
 func GetDbConnString() string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		"localhost", 5432, "postgres", "postgres", "booking")
+	return fmt.Sprintf("postgres://%v:%v@%v/%v?sslmode=disable",
+		"postgres",
+		"postgres",
+		"booking_postgres",
+		"booking")
 }
 
 func main() {
