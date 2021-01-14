@@ -1,0 +1,19 @@
+language: go
+go: "1.15.2"
+os: linux
+
+services:
+  postgresql
+
+before_script:
+  - psql -c 'create database booking_test;' -U postgres
+  - psql -c "alter database booking_test SET TIME ZONE 'Europe/Moscow';"
+  - psql -d booking_test -c '\i scripts/init.sql;' -U postgres
+  - psql -c "alter user postgres with password 'postgres';" -U postgres
+
+jobs:
+  include:
+    - stage: build
+      script: go build cmd/app/main.go
+    - stage: test
+      script: go test ./...
