@@ -56,7 +56,7 @@ func (bh *BookingHandler) CreateBooking() echo.HandlerFunc {
 			return context.JSON(customErr.HTTPCode, response.Response{Error: customErr})
 		}
 
-		return context.JSON(http.StatusOK, BookingID{ID: booking.ID})
+		return context.JSON(http.StatusCreated, BookingID{ID: booking.ID})
 	}
 }
 
