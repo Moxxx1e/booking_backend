@@ -1,0 +1,20 @@
+# rooms.yml
+- id: 1
+  description: room at the Hotel California
+  price: 500
+  created: 2021-01-08 19:37:51.0+03
+
+- id: 2
+  description: room at the Grand Budapest Hotel
+  price: 11500
+  created: 2021-01-09 19:37:51.0+03
+
+- id: 3
+  description: room at the Hostel Teriba
+  price: 750
+  created: 2021-01-07 19:37:51.0+03
+
+- id: 4
+  description: room at the Hostel Friends
+  price: 300
+  created: 2021-01-06 19:37:51.0+03
